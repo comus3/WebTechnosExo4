@@ -2,7 +2,7 @@ let express = require('express');
 
 let app = express();
 app.get('/', (request,response)=>{
-    response.send("Hello world");
+    response.render('home.ejs');
 
 })
 app.listen(3000, function(){
