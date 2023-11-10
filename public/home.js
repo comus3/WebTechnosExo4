@@ -17,16 +17,19 @@ class TaskList {
     addTask(description) {
         const newTask = new Task(description);
         this.tasks.push(newTask);
+        updateTasks();
     }
 
     deleteTask(index) {
+        console.log("heplp im not functionnal!");
         if (index >= 0 && index < this.tasks.length) {
-            this.tasks.splice(index, 1);
+            this.tasks.splice(index,1)
+            updateTasks();
         }
     }
 
     getTasks() {
-        return this.tasks.map(task => task.returnTask());
+        return this.tasks;
     }
 }
 //creer la liste
@@ -44,7 +47,7 @@ button.addEventListener("click", function(){
 })
 
 
-function updateTasks(taskList){
+function updateTasks(){
     var taskListElement = document.getElementById('taskList');
     taskListElement.textContent = ""
     index = 0
@@ -54,10 +57,10 @@ function updateTasks(taskList){
         taskListElement.appendChild(attribut);
         var deleteButton = document.createElement('button');
         deleteButton.textContent = 'Delete';
-        deleteButton.onclick = function() {
-            taskList.deleteTask(index);
-            updateTasks();
-        };
+        const i = index
+        deleteButton.addEventListener("click" ,function() {
+            taskList.deleteTask(i);
+        })
         taskListElement.appendChild(deleteButton);
         index = index + 1;
     });
@@ -68,9 +71,9 @@ function addTask() {
     var taskInput = document.getElementById('taskInput');
 
     if (taskInput.value.trim() !== '') {
-        taskList.addTask(taskInput)
+        taskList.addTask(taskInput.value.trim())
         taskInput.value = '';
     }
-    updateTasks(taskList)
+    updateTasks()
 }
 
