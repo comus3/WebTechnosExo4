@@ -10,9 +10,20 @@
 
     <div id="app">
         <h1>To-Do List</h1>
-        <input type="text" id="taskInput" placeholder="Add a new task...">
-        <button id="button">Add Task</button>
-        <ul id="taskList"></ul>
+        <form method="get">
+            <label>Task:</label>
+            <input name = "task" type="text" placeholder="Type your task" id = "description">
+            <input type="submit" value="Submit">
+        </form>
+        <ul id="taskList">
+            <% for(var i = 0; i < taskList.length; i++){
+                %>
+                <li>
+                    <%=taskList[i]%>
+                    <a href="?delete=<%=i%>" name = delete>delete</a>
+                </li>
+            <%};%>
+        </ul>
     </div>
 
     <script src="home.js"></script>
