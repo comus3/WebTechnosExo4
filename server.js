@@ -13,10 +13,13 @@ taskList.push("Miam manger 3eme fois");
 let app = express();
 app.use(express.static('public'));
 app.get('/', (request,response)=>{
-    ans1 = request.query.task
-    an2 = request.query.delete
-    console.log(ans1);
-    taskList.push(ans1)
+
+    if (request.query.task != null){
+        taskList.push(request.query.task);
+    }
+    if (request.query.delete != null){
+        taskList.splice(request.query.delete,1);
+    }
     response.render('home.ejs', { taskList : taskList });
 })
 app.listen(3000, function(){
